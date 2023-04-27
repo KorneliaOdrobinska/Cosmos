@@ -15,10 +15,17 @@ public class CelestialBody {
     private Integer ID;
     private String name;
     private boolean isPlanet;
+    private Integer surfaceTemperature; // unit: Kelvin TODO change to Long type
+    private Integer radius; // unit: kilometers TODO change to Double Type
+    private String lastMeasurementDate; //TODO change to Date type
 
-    public CelestialBody(String name, boolean isPlanet) {
+
+    public CelestialBody(String name, boolean isPlanet, Integer surfaceTemperature, Integer radius, String lastMesaurementDate) {
         this.name = name;
         this.isPlanet = isPlanet;
+        this.surfaceTemperature = surfaceTemperature;
+        this.radius = radius;
+        this.lastMeasurementDate = lastMesaurementDate;
     }
 
     public Integer getID() {
@@ -33,12 +40,20 @@ public class CelestialBody {
         return isPlanet;
     }
 
-    CelestialBody addCelestialBody(CelestialBody newCelestialBody){
-        var session = HibernateUtil.getSessionFactory().openSession();
-        var transaction = session.beginTransaction();
-        session.persist(newCelestialBody);
-        transaction.commit();
-        session.close();
-        return newCelestialBody;
+    public Integer getSurfaceTemperature() {
+        return surfaceTemperature;
     }
+
+    public Integer getRadius() {
+        return radius;
+    }
+
+    public String getLastMeasurementDate() {
+        return lastMeasurementDate;
+    }
+
+    public void setLastMeasurementDate(String lastMeasurementDate) {
+        this.lastMeasurementDate = lastMeasurementDate;
+    }
+
 }
