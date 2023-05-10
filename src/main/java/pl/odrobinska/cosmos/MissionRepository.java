@@ -1,12 +1,12 @@
 package pl.odrobinska.cosmos;
 
-public class CelestialBodyRepository {
-    CelestialBody addCelestialBody(CelestialBody newCelestialBody){
+public class MissionRepository {
+    Mission addMission(Mission newMission){
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
-        session.persist(newCelestialBody);
+        session.persist(newMission);
         transaction.commit();
         session.close();
-        return newCelestialBody;
+        return newMission;
     }
 }
