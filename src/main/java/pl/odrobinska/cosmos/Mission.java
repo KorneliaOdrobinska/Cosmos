@@ -17,7 +17,7 @@ public class Mission {
     private Boolean manned;
     private Integer celestialBodyCorrelation;
     private Integer satelliteCorrelation;
-    private String missionStartdate; // TODO change to date type
+    private String missionStartDate; // TODO change to date type
     private Boolean isFinished;
 
     public Mission(String name, Boolean manned, Integer celestialBodyCorrelation, Integer satelliteCorrelation, String date, Boolean isFinished) {
@@ -25,7 +25,7 @@ public class Mission {
         this.manned = manned;
         this.celestialBodyCorrelation = celestialBodyCorrelation;
         this.satelliteCorrelation = satelliteCorrelation;
-        this.missionStartdate = date;
+        this.missionStartDate = date;
         this.isFinished = isFinished;
     }
 
@@ -49,8 +49,8 @@ public class Mission {
         return satelliteCorrelation;
     }
 
-    public String getMissionStartdate() {
-        return missionStartdate;
+    public String getMissionStartDate() {
+        return missionStartDate;
     }
 
     public Boolean getFinished() {

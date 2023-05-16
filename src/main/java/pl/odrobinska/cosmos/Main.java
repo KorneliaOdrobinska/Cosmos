@@ -10,6 +10,10 @@ public class Main {
         Mission magellan = new Mission("Magellan", false, 2, null, "1989-05-04", true);
         MissionRepository missionRepository = new MissionRepository();
         missionRepository.addMission(magellan);
+
+        Satellite moon = new Satellite("Moon", true, 3, "prehistoric");
+        SatelliteRepository satelliteRepository = new SatelliteRepository();
+        satelliteRepository.addSatellite(moon);
         HibernateUtil.close();
     }
 }
