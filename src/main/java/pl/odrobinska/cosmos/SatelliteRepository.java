@@ -1,5 +1,8 @@
 package pl.odrobinska.cosmos;
 
+import java.util.List;
+import java.util.Optional;
+
 public class SatelliteRepository {
     Satellite addSatellite(Satellite newSatellite){
         var session = HibernateUtil.getSessionFactory().openSession();
@@ -8,5 +11,23 @@ public class SatelliteRepository {
         transaction.commit();
         session.close();
         return newSatellite;
+    }
+
+    List<Satellite> findAll() {
+        var session = HibernateUtil.getSessionFactory().openSession();
+        var transaction = session.beginTransaction();
+        var result = session.createQuery("from Satellite", Satellite.class).list();
+        transaction.commit();
+        session.close();
+        return result;
+    }
+
+    Optional<Satellite> findById(Integer id){
+        var session = HibernateUtil.getSessionFactory().openSession();
+        var transaction = session.beginTransaction();
+        var result = session.get(Satellite.class, id);
+        transaction.commit();
+        session.close();
+        return Optional.ofNullable(result);
     }
 }

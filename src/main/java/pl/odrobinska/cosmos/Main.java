@@ -6,6 +6,8 @@ public class Main {
         CelestialBody wenus = new CelestialBody("Wenus", true, 737, 6051, "00");
         CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository();
         celestialBodyRepository.addCelestialBody(wenus);
+        System.out.println(celestialBodyRepository.findById(2).get().getName());
+        System.out.println(celestialBodyRepository.findAll().get(0).getName());
 
         Mission magellan = new Mission("Magellan", false, 2, null, "1989-05-04", true);
         MissionRepository missionRepository = new MissionRepository();

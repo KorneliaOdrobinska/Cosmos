@@ -26,6 +26,9 @@ public class Satellite {
         this.discoveryDate = discoveryDate;
     }
 
+    public Satellite() {
+    }
+
     public Integer getID() {
         return ID;
     }

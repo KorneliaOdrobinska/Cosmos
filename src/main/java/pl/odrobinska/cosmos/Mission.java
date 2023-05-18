@@ -29,6 +29,9 @@ public class Mission {
         this.isFinished = isFinished;
     }
 
+    public Mission() {
+    }
+
     public Integer getID() {
         return ID;
     }

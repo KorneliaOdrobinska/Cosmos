@@ -28,6 +28,9 @@ public class CelestialBody {
         this.lastMeasurementDate = lastMesaurementDate;
     }
 
+    public CelestialBody() {
+    }
+
     public Integer getID() {
         return ID;
     }
