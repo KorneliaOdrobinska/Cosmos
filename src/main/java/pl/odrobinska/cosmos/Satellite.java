@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "SATELLITES")
 public class Satellite {
@@ -19,11 +21,15 @@ public class Satellite {
     private String discoveryDate; //TODO change to Date type
 
 
-    public Satellite(String name, boolean isNatural, Integer celestialBodyCorrelation, String discoveryDate) {
+    public Satellite(String name, boolean isNatural, Integer celestialBodyCorrelation, String discoveryDate) throws IllegalArgumentException{
         this.name = name;
         this.isNatural = isNatural;
-        this.celestialBodyCorrelation = celestialBodyCorrelation;
         this.discoveryDate = discoveryDate;
+
+        CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
+        if (celestialBodyRepository.findById(celestialBodyCorrelation).isPresent()) {
+            this.celestialBodyCorrelation = celestialBodyCorrelation;
+        } else throw new IllegalArgumentException("Wrong Celestial Body Correlation!");
     }
 
     public Satellite() {
