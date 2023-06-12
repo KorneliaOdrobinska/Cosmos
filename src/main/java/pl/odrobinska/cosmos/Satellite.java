@@ -6,7 +6,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
-import java.util.Optional;
+import java.sql.Date;
 
 @Entity
 @Table(name = "SATELLITES")
@@ -18,10 +18,10 @@ public class Satellite {
     private String name;
     private boolean isNatural;
     private Integer celestialBodyCorrelation;
-    private String discoveryDate; //TODO change to Date type
+    private Date discoveryDate; // TODO change to LocalDate type
 
 
-    public Satellite(String name, boolean isNatural, Integer celestialBodyCorrelation, String discoveryDate) throws IllegalArgumentException{
+    public Satellite(String name, boolean isNatural, Integer celestialBodyCorrelation, Date discoveryDate) throws IllegalArgumentException{
         this.name = name;
         this.isNatural = isNatural;
         this.discoveryDate = discoveryDate;
@@ -51,7 +51,7 @@ public class Satellite {
         return celestialBodyCorrelation;
     }
 
-    public String getDiscoveryDate() {
+    public Date getDiscoveryDate() {
         return discoveryDate;
     }
 

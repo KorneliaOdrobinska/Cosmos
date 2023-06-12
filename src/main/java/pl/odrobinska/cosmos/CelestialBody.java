@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.sql.Date;
+
 @Entity
 @Table(name = "SOLAR_SYSTEM")
 public class CelestialBody {
@@ -15,12 +17,12 @@ public class CelestialBody {
     private Integer ID;
     private String name;
     private boolean isPlanet;
-    private Integer surfaceTemperature; // unit: Kelvin TODO change to Long type
-    private Integer radius; // unit: kilometers TODO change to Double Type
-    private String lastMeasurementDate; //TODO change to Date type
+    private Long surfaceTemperature; // unit: Kelvin
+    private Double radius; // unit: kilometers
+    private Date lastMeasurementDate; //TODO change to LocalDate type
 
 
-    public CelestialBody(String name, boolean isPlanet, Integer surfaceTemperature, Integer radius, String lastMesaurementDate) {
+    public CelestialBody(String name, boolean isPlanet, Long surfaceTemperature, Double radius, Date lastMesaurementDate) {
         this.name = name;
         this.isPlanet = isPlanet;
         this.surfaceTemperature = surfaceTemperature;
@@ -43,19 +45,19 @@ public class CelestialBody {
         return isPlanet;
     }
 
-    public Integer getSurfaceTemperature() {
+    public Long getSurfaceTemperature() {
         return surfaceTemperature;
     }
 
-    public Integer getRadius() {
+    public Double getRadius() {
         return radius;
     }
 
-    public String getLastMeasurementDate() {
+    public Date getLastMeasurementDate() {
         return lastMeasurementDate;
     }
 
-    public void setLastMeasurementDate(String lastMeasurementDate) {
+    public void setLastMeasurementDate(Date lastMeasurementDate) {
         this.lastMeasurementDate = lastMeasurementDate;
     }
 

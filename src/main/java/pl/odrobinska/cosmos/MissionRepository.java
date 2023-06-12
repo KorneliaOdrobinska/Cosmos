@@ -13,6 +13,9 @@ public class MissionRepository {
         return newMission;
     }
 
+    // TODO editMission - to change mission parameters and lastMeasurementDate on CelestialBody or add new natural Satellite (and set discoveryDate)
+    // TODO finishMission to change mission parameters and add new not natural Satellite
+
     List<Mission> findAll() {
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();

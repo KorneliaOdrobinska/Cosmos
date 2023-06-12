@@ -3,5 +3,5 @@ create table SATELLITES (
     NAME varchar(100) not null,
     ISNATURAL bit,
     CELESTIALBODYCORRELATION int,
-    DISCOVERYDATE varchar(100)
+    DISCOVERYDATE date
 );
