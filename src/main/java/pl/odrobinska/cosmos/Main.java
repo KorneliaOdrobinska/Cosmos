@@ -18,16 +18,18 @@ public class Main {
 
         MissionRepository missionRepository = new MissionRepository();
         try {
-            Mission magellan = new Mission("Magellan", false, null, 333, "1989-05-04", true);
+            Mission magellan = new Mission("Magellan", false, 2, null, "1989-05-04", false);
             missionRepository.addMission(magellan);
         } catch (Exception e){
-            System.out.println("Wrong data");
+            System.out.println("Wrong data"); // TODO 1 unclosed connections wht celestialBodyCorrelation is null
         }
-
 
         Satellite moon = new Satellite("Moon", true, 2, date);
         SatelliteRepository satelliteRepository = new SatelliteRepository();
         satelliteRepository.addSatellite(moon);
+        System.out.println(missionRepository.findById(2).get().getCelestialBodyCorrelation());
+        missionRepository.finishMission(14, true);
+
         HibernateUtil.close();
     }
 }
