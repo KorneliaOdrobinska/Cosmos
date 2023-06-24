@@ -2,7 +2,6 @@ package pl.odrobinska.cosmos;
 
 import java.time.LocalDate;
 import java.sql.Date;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,7 +27,7 @@ public class Main {
         SatelliteRepository satelliteRepository = new SatelliteRepository();
         satelliteRepository.addSatellite(moon);
         System.out.println(missionRepository.findById(2).get().getCelestialBodyCorrelation());
-        missionRepository.finishMission(14, true);
+        missionRepository.finishMission(12, true);
 
         HibernateUtil.close();
     }

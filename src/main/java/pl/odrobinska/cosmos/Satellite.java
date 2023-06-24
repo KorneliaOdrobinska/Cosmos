@@ -29,7 +29,7 @@ public class Satellite {
         CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
         if (celestialBodyRepository.findById(celestialBodyCorrelation).isPresent()) {
             this.celestialBodyCorrelation = celestialBodyCorrelation;
-        } else throw new IllegalArgumentException("Wrong Celestial Body Correlation!");
+        } else throw new IllegalArgumentException("Wrong Celestial Body Correlation!"); // TODO !!! change to logger.error
     }
 
     public Satellite() {
