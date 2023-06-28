@@ -19,12 +19,14 @@ public class Satellite {
     private boolean isNatural;
     private Integer celestialBodyCorrelation;
     private Date discoveryDate; // TODO change to LocalDate type
+    private Date lastMeasurementDate; //TODO change to LocalDate type
 
 
     public Satellite(String name, boolean isNatural, Integer celestialBodyCorrelation, Date discoveryDate) throws IllegalArgumentException{
         this.name = name;
         this.isNatural = isNatural;
         this.discoveryDate = discoveryDate;
+        this.lastMeasurementDate = discoveryDate;
 
         CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
         if (celestialBodyRepository.findById(celestialBodyCorrelation).isPresent()) {
@@ -55,4 +57,11 @@ public class Satellite {
         return discoveryDate;
     }
 
+    public Date getLastMeasurementDate() {
+        return lastMeasurementDate;
+    }
+
+    public void setLastMeasurementDate(Date lastMeasurementDate) {
+        this.lastMeasurementDate = lastMeasurementDate;
+    }
 }

@@ -13,21 +13,22 @@ public class CelestialBodyRepository {
         return newCelestialBody;
     }
 
-        List<CelestialBody> findAll() {
-            var session = HibernateUtil.getSessionFactory().openSession();
-            var transaction = session.beginTransaction();
-            var result = session.createQuery("from CelestialBody", CelestialBody.class).list();
-            transaction.commit();
-            session.close();
-            return result;
-        }
+    // TODO !!!updateCelestialBodyData(celestialID, Map of attributes to update)
 
-        Optional<CelestialBody> findById(Integer id){
-            var session = HibernateUtil.getSessionFactory().openSession();
-            var transaction = session.beginTransaction();
-            var result = session.get(CelestialBody.class, id);
-            transaction.commit();
-            session.close();
-            return Optional.ofNullable(result);
+    List<CelestialBody> findAll() {
+        var session = HibernateUtil.getSessionFactory().openSession();
+        var transaction = session.beginTransaction();
+        var result = session.createQuery("from CelestialBody", CelestialBody.class).list();
+        transaction.commit();
+        session.close();
+        return result;
+    }
+    Optional<CelestialBody> findById(Integer id){
+        var session = HibernateUtil.getSessionFactory().openSession();
+        var transaction = session.beginTransaction();
+        var result = session.get(CelestialBody.class, id);
+        transaction.commit();
+        session.close();
+        return Optional.ofNullable(result);
         }
 }
