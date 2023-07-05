@@ -26,9 +26,9 @@ public class Main {
         Satellite moon = new Satellite("Moon", true, 2, date);
         SatelliteRepository satelliteRepository = new SatelliteRepository();
         satelliteRepository.addSatellite(moon);
-        missionRepository.updateMission(1, true, "TestSatellite");
+        missionRepository.updateMission(18, true, "TestSatellite");
         System.out.println(missionRepository.findById(2).get().getCelestialBodyCorrelation());
-        missionRepository.finishMission(2, true);
+        missionRepository.finishMission(9, false);
 
         HibernateUtil.close();
     }

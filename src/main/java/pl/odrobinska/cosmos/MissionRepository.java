@@ -33,7 +33,7 @@ public class MissionRepository {
         Session session = null; // TODO optimize creation of session and transaction
         Transaction transaction = null;
 
-        if(!mission.getFinished()) {
+        if(!mission.getFinished()) { // TODO !!! when mission is finished error appears: transaction is null -> move session/transaction creation/commit
             if (mission.isCorrelatedToCelestialBody()) {
                 CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository();
                 CelestialBody celestialBody = celestialBodyRepository.findById(mission.getCelestialBodyCorrelation()).get();
@@ -68,15 +68,14 @@ public class MissionRepository {
     Mission finishMission(int missionID, boolean becomeSatellite){
         Mission mission = findById(missionID).get();
         mission.setFinished(true);
-        if(becomeSatellite){
-            SatelliteRepository satelliteRepository = new SatelliteRepository();
-            Date date = Date.valueOf(LocalDate.now()); // TODO optimize date creating
-            try { // TODO optimize try catch block
-                mission.getCelestialBodyCorrelation().equals(null); // TODO !!! use mission.isCorrelatedToCelestialBody()
+        if (becomeSatellite){
+            if (mission.isCorrelatedToCelestialBody()){
+                SatelliteRepository satelliteRepository = new SatelliteRepository();
+                Date date = Date.valueOf(LocalDate.now()); // TODO optimize date creating
                 Satellite satellite = new Satellite(mission.getName(), false, mission.getCelestialBodyCorrelation(), date);
                 satelliteRepository.addSatellite(satellite);
-            } catch (NullPointerException e){
-                logger.error("Cannot create satellite when celestialBodyCorrelation is null. " +
+            } else {
+                logger.warn("Cannot create satellite when celestialBodyCorrelation is null. " +
                         "The mission will be finished without creating a new satellite.");
             }
         }

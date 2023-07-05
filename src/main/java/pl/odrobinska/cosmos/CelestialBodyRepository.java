@@ -30,5 +30,5 @@ public class CelestialBodyRepository {
         transaction.commit();
         session.close();
         return Optional.ofNullable(result);
-        }
+    }
 }

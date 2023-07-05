@@ -40,11 +40,11 @@ public class Mission {
                 this.correlatedToCelestialBody = true;
             } else throw new IOException("Wrong Celestial Body Correlation!"); // TODO !!! change to logger.error
         } catch (IllegalArgumentException e) {
-                SatelliteRepository satelliteRepository = new SatelliteRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
-                if (satelliteRepository.findById(satelliteCorrelation).isPresent()) {
-                    this.satelliteCorrelation = satelliteCorrelation;
-                    this.correlatedToCelestialBody = false;
-                } else throw new IllegalArgumentException("Wrong Satellite Correlation!"); // TODO !!! change to logger.error
+            SatelliteRepository satelliteRepository = new SatelliteRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
+            if (satelliteRepository.findById(satelliteCorrelation).isPresent()) {
+                this.satelliteCorrelation = satelliteCorrelation;
+                this.correlatedToCelestialBody = false;
+            } else throw new IllegalArgumentException("Wrong Satellite Correlation!"); // TODO !!! change to logger.error
         }
     }
 
