@@ -25,8 +25,14 @@ public class SatelliteRepository {
     Optional<Satellite> findById(Integer id){
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
-        var result = session.get(Satellite.class, id);
-        transaction.commit();
+        Satellite result;
+        try {
+            result = session.get(Satellite.class, id);
+            transaction.commit();
+        } catch (IllegalArgumentException e){ // when id is null
+            session.close();
+            throw new IllegalArgumentException("Satellite by id not found");
+        }
         session.close();
         return Optional.ofNullable(result);
     }

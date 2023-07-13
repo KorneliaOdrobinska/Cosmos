@@ -26,8 +26,14 @@ public class CelestialBodyRepository {
     Optional<CelestialBody> findById(Integer id){
         var session = HibernateUtil.getSessionFactory().openSession();
         var transaction = session.beginTransaction();
-        var result = session.get(CelestialBody.class, id);
-        transaction.commit();
+        CelestialBody result;
+        try {
+            result = session.get(CelestialBody.class, id);
+            transaction.commit();
+        } catch (IllegalArgumentException e){ // when id is null
+            session.close();
+            throw new IllegalArgumentException("Celestial Body by id not found");
+        }
         session.close();
         return Optional.ofNullable(result);
     }
