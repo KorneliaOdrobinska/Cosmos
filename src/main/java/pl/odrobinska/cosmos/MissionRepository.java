@@ -1,6 +1,5 @@
 package pl.odrobinska.cosmos;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +28,7 @@ public class MissionRepository {
      */
     Mission updateMission(int missionID, boolean createSatellite, String satelliteName){
         Mission mission = findById(missionID).get();
-        Date date = Date.valueOf(LocalDate.now()); // TODO optimize date creating
+        LocalDate date = LocalDate.now(); // TODO optimize date creating
         Session session = null; // TODO optimize creation of session and transaction
         Transaction transaction = null;
 
@@ -45,7 +44,7 @@ public class MissionRepository {
                     transaction.commit();
                     session.close();
                     SatelliteRepository satelliteRepository = new SatelliteRepository();
-                    Satellite newSatellite = new Satellite(satelliteName, true, mission.getCelestialBodyCorrelation(), date);
+                    Satellite newSatellite = new Satellite(satelliteName, true, mission.getCelestialBodyCorrelation(), LocalDate.now());
                     satelliteRepository.addSatellite(newSatellite);
                     session = HibernateUtil.getSessionFactory().openSession();
                     transaction = session.beginTransaction();
@@ -71,8 +70,7 @@ public class MissionRepository {
         if (becomeSatellite){
             if (mission.isCorrelatedToCelestialBody()){
                 SatelliteRepository satelliteRepository = new SatelliteRepository();
-                Date date = Date.valueOf(LocalDate.now()); // TODO optimize date creating
-                Satellite satellite = new Satellite(mission.getName(), false, mission.getCelestialBodyCorrelation(), date);
+                Satellite satellite = new Satellite(mission.getName(), false, mission.getCelestialBodyCorrelation(), LocalDate.now());
                 satelliteRepository.addSatellite(satellite);
             } else {
                 logger.warn("Cannot create satellite when celestialBodyCorrelation is null. " +

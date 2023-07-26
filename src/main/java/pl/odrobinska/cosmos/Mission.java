@@ -6,12 +6,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "MISSIONS")
 public class Mission {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Mission.class);
     @Id
     @GeneratedValue(generator="inc")
     @GenericGenerator(name="inc", strategy = "increment")
@@ -20,17 +25,17 @@ public class Mission {
     private Boolean manned;
     private Integer celestialBodyCorrelation;
     private Integer satelliteCorrelation;
-    private String missionStartDate; // TODO change to date type
+    private Date missionStartDate;
     private Boolean isFinished;
 
     private Boolean correlatedToCelestialBody; // true - correlated to Celestial Body, false - correlated to Satellite
 
-    public Mission(String name, Boolean manned, @Nullable Integer celestialBodyCorrelation, @Nullable Integer satelliteCorrelation, String date, Boolean isFinished) throws IOException{
+    public Mission(String name, Boolean manned, @Nullable Integer celestialBodyCorrelation, @Nullable Integer satelliteCorrelation, LocalDate date, Boolean isFinished) throws IOException{
         this.name = name;
         this.manned = manned;
         this.celestialBodyCorrelation = celestialBodyCorrelation;
         this.satelliteCorrelation = satelliteCorrelation;
-        this.missionStartDate = date;
+        this.missionStartDate = Date.valueOf(date);
         this.isFinished = isFinished;
 
         CelestialBodyRepository celestialBodyRepository = new CelestialBodyRepository(); // TODO czy w tym miejscu twprzyc obiekt repository?
@@ -71,7 +76,7 @@ public class Mission {
         return satelliteCorrelation;
     }
 
-    public String getMissionStartDate() {
+    public Date getMissionStartDate() {
         return missionStartDate;
     }
 
